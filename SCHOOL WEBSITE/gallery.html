@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - TSGVHSS Payyoli</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>TSGVHSS</h2>
+                <span class="tagline">Payyoli</span>
+            </div>
+            <nav>
+                <ul>
+                     <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="learn.html" class="nav-link">Academics</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="admission.html" class="nav-link">Admission</a></li>
+                    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link login-btn">Contact</a></li>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Our Gallery</h1>
+            <p class="hero-subtitle">Capturing Moments of Excellence and Achievement</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="campus">Campus</button>
+                <button class="filter-btn" data-filter="academics">Academics</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="achievements">Achievements</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-main">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Campus Images -->
+                <div class="gallery-item" data-category="campus">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="2.jpg" alt="TSGVHSS Main Building">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Main Building</h3>
+                                    <p>Our iconic school building that has stood the test of time</p>
+                                    <span class="gallery-category">Campus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="campus">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="library.jpg" alt="School Library">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>School Library</h3>
+                                    <p>Well-stocked library with thousands of books</p>
+                                    <span class="gallery-category">Campus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academics Images -->
+                <div class="gallery-item" data-category="academics">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="chemistry.jpg" alt="Science Laboratory">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Science Lab</h3>
+                                    <p>Students conducting experiments in physics lab</p>
+                                    <span class="gallery-category">Academics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="academics">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="lab.jpg" alt="Computer Laboratory">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Computer Lab</h3>
+                                    <p>Modern computer lab with latest technology</p>
+                                    <span class="gallery-category">Academics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sports Images -->
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="sports.jpg" alt="Annual Sports Day">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Annual Sports Day</h3>
+                                    <p>Students participating in track events</p>
+                                    <span class="gallery-category">Sports</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="football.jpg" alt="Football Tournament">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Football Tournament</h3>
+                                    <p>Inter-school football competition winners</p>
+                                    <span class="gallery-category">Sports</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Images -->
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="ncc2.jpg" alt="Independence Day Celebration">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Independence Day</h3>
+                                    <p>Flag hoisting ceremony with NCC cadets</p>
+                                    <span class="gallery-category">Events</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="annual.jpeg" alt="Annual Day Function">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Annual Day</h3>
+                                    <p>Cultural performances by students</p>
+                                    <span class="gallery-category">Events</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Images -->
+                <div class="gallery-item" data-category="achievements">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="science.jpg" alt="Science Fair Winners">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Science Fair Winners</h3>
+                                    <p>Students receiving awards at state level science fair</p>
+                                    <span class="gallery-category">Achievements</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="achievements">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="ncc1.jpg" alt="NCC Parade">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>NCC Excellence</h3>
+                                    <p>Our NCC unit receiving district level awards</p>
+                                    <span class="gallery-category">Achievements</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Images -->
+                <div class="gallery-item" data-category="campus">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="auditorium.jpg" alt="School Auditorium">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Auditorium</h3>
+                                    <p>State-of-the-art auditorium for events</p>
+                                    <span class="gallery-category">Campus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="academics">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="smart.jpg" alt="Smart Classroom">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Smart Classroom</h3>
+                                    <p>Interactive learning with digital boards</p>
+                                    <span class="gallery-category">Academics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="cricket.jpg" alt="Cricket Team">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Cricket Team</h3>
+                                    <p>School cricket team with trophies</p>
+                                    <span class="gallery-category">Sports</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-card">
+                        <div class="gallery-image">
+                            <img src="ncc2.jpg" alt="Republic Day">
+                            <div class="gallery-overlay">
+                                <div class="gallery-content">
+                                    <h3>Republic Day</h3>
+                                    <p>Cultural parade and celebrations</p>
+                                    <span class="gallery-category">Events</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn btn-outline" id="loadMore">Load More Photos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Albums -->
+    <section class="featured-albums">
+        <div class="container">
+            <h2 class="section-title">Featured Albums</h2>
+            <p class="section-subtitle">Explore our curated collections of memorable moments</p>
+            
+            <div class="albums-grid">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="annual.jpg" alt="Annual Day 2024">
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3>Annual Day 2024</h3>
+                                <p>45 Photos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="album-content">
+                        <h3>Annual Day Celebrations</h3>
+                        <p>Complete coverage of our annual day function with cultural performances and award ceremonies.</p>
+                    </div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="sports.jpg" alt="Sports Day 2024">
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3>Sports Day 2024</h3>
+                                <p>62 Photos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="album-content">
+                        <h3>Annual Sports Day</h3>
+                        <p>Action-packed moments from track events, games, and prize distribution ceremony.</p>
+                    </div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="science.jpg" alt="Science Exhibition">
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3>Science Exhibition</h3>
+                                <p>38 Photos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="album-content">
+                        <h3>Science & Technology Fair</h3>
+                        <p>Innovative projects and experiments showcased by our talented students.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="gallery-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 class="stat-number">500+</h3>
+                    <p class="stat-label">Photos</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">25+</h3>
+                    <p class="stat-label">Albums</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">50+</h3>
+                    <p class="stat-label">Events</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">2020</h3>
+                    <p class="stat-label">Since</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TSGVHSS Payyoli</h3>
+                    <p>Nurturing society and culture since 1950. A premier educational institution dedicated to holistic development and academic excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="learn.html">Academics & Activities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Academics</h4>
+                    <ul>
+                         <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="learn.html">Academics & Activities</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> TSGVHSS Payyoli, Kozhikode, Kerala</li>
+                        <li><i class="fas fa-phone"></i> +91 912871292</li>
+                        <li><i class="fas fa-envelope"></i> TSGVHSSpy@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TSGVHSS Payyoli. All Rights Reserved. | Kerala Government</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const loadMoreBtn = document.getElementById('loadMore');
+
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Load more functionality
+            let visibleItems = 8;
+            const allItems = document.querySelectorAll('.gallery-item');
+            
+            // Initially hide extra items
+            allItems.forEach((item, index) => {
+                if (index >= visibleItems) {
+                    item.style.display = 'none';
+                }
+            });
+
+            loadMoreBtn.addEventListener('click', function() {
+                visibleItems += 4;
+                
+                allItems.forEach((item, index) => {
+                    if (index < visibleItems) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, index * 100);
+                    }
+                });
+
+                // Hide load more button if all items are visible
+                if (visibleItems >= allItems.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+
+            // Image hover effects
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            galleryCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

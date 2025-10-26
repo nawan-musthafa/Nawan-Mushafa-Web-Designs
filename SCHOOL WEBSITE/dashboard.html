@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TSGVHSS Payyoli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>TSGVHSS</h2>
+                <span class="tagline">Payyoli - Dashboard</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Dashboard</h1>
+        <div id="user-info"></div>
+        <div id="dashboard-content">
+            <p>You are successfully logged in!</p>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+        
+        // Display user info
+        document.getElementById('user-info').innerHTML = `
+            <div class="user-card">
+                <h3>Welcome, ${user.profile?.fullName || user.username}!</h3>
+                <p>Email: ${user.email}</p>
+                <p>Role: ${user.role}</p>
+            </div>
+        `;
+        
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
