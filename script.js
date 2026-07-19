@@ -7,11 +7,69 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ===== PRELOADER =====
+    // Respect the user's motion preference throughout the file
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ===== PRELOADER (progress ring + logo reveal) =====
     const preloader = document.getElementById('preloader');
+    const loaderRing = document.querySelector('.loader-ring');
+    let loadProgress = 0;
+    const progressTimer = setInterval(() => {
+        // Ease toward 92% while real resources load; the load event finishes it
+        loadProgress += (92 - loadProgress) * 0.1 + 1;
+        if (loadProgress > 92) loadProgress = 92;
+        if (loaderRing) loaderRing.style.setProperty('--p', loadProgress.toFixed(1));
+    }, 100);
+
     window.addEventListener('load', function () {
-        setTimeout(() => preloader.classList.add('hidden'), 800);
+        clearInterval(progressTimer);
+        if (loaderRing) loaderRing.style.setProperty('--p', 100);
+        setTimeout(() => preloader.classList.add('hidden'), 600);
     });
+
+    // ============================================================
+    // 0. SMOOTH SCROLL (Lenis) + SCROLL ANIMATIONS (GSAP/ScrollTrigger)
+    // ============================================================
+    let lenis = null;
+    if (!reduceMotion && window.Lenis) {
+        lenis = new Lenis({
+            lerp: 0.1,
+            smoothWheel: true,
+        });
+    }
+
+    const hasGSAP = !!window.gsap;
+    const hasScrollTrigger = hasGSAP && !!window.ScrollTrigger;
+
+    if (hasGSAP) {
+        if (hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+        // Drive Lenis off GSAP's own ticker so there's a single rAF loop
+        // powering both the smooth scroll and the scroll-triggered animations.
+        gsap.ticker.add((time) => {
+            if (lenis) lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+        if (lenis && hasScrollTrigger) {
+            lenis.on('scroll', ScrollTrigger.update);
+        }
+    } else if (lenis) {
+        // No GSAP available – drive Lenis with a plain rAF loop instead
+        function rafFallback(time) {
+            lenis.raf(time);
+            requestAnimationFrame(rafFallback);
+        }
+        requestAnimationFrame(rafFallback);
+    }
+
+    // Helper used by every internal-anchor click handler below
+    function smoothScrollTo(target, offset = -80) {
+        if (lenis) {
+            lenis.scrollTo(target, { offset });
+        } else {
+            const top = (typeof target === 'number' ? target : target.offsetTop) + offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    }
 
     // ============================================================
     // 1. CUSTOM CURSOR DOT + BACKGROUND DISTORTION
@@ -43,17 +101,35 @@ document.addEventListener('DOMContentLoaded', function () {
         mouseY = e.clientY;
     });
 
+    // Magnetic pull: while hovering a small, precise interactive element,
+    // the glass eases toward its center instead of the raw cursor position.
+    let activeMagnet = null;
+
+    function glassTarget() {
+        if (activeMagnet) {
+            const rect = activeMagnet.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            return {
+                x: mouseX + (cx - mouseX) * 0.35,
+                y: mouseY + (cy - mouseY) * 0.35,
+            };
+        }
+        return { x: mouseX, y: mouseY };
+    }
+
     // Smooth follow for dot and glass (different speeds for layered effect)
     function animateCursor() {
-        // Dot follows fast
-        dotX += (mouseX - dotX) * 0.2;
-        dotY += (mouseY - dotY) * 0.25;
+        // Dot follows fast and precisely
+        dotX += (mouseX - dotX) * 0.35;
+        dotY += (mouseY - dotY) * 0.35;
         cursorDot.style.left = dotX + 'px';
         cursorDot.style.top = dotY + 'px';
 
-        // Glass follows with slight elastic delay
-        glassX += (mouseX - glassX) * 0.2;
-        glassY += (mouseY - glassY) * 0.2;
+        // Glass follows with a touch of elastic delay, pulled toward magnets
+        const target = glassTarget();
+        glassX += (target.x - glassX) * 0.18;
+        glassY += (target.y - glassY) * 0.18;
         distortion.style.left = glassX + 'px';
         distortion.style.top = glassY + 'px';
 
@@ -61,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     animateCursor();
 
-    // Hover effects
+    // Hover effects (glow + expand)
     const hoverElements = document.querySelectorAll(
         'a, button, .btn, .nav-link, .project-link, .social-link, .project-card, .ach-card'
     );
@@ -80,6 +156,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         el.addEventListener('mouseup', function () {
             distortion.classList.remove('click');
+        });
+    });
+
+    // Magnetic pull only on small, precise targets – pulling a big card's
+    // hover toward its center would feel wrong across its whole area.
+    const magneticElements = document.querySelectorAll(
+        '.btn, .nav-link, .social-link, .project-link, .nav-toggle'
+    );
+    magneticElements.forEach(el => {
+        el.addEventListener('mouseenter', function () {
+            activeMagnet = this;
+        });
+        el.addEventListener('mouseleave', function () {
+            if (activeMagnet === this) activeMagnet = null;
         });
     });
 
@@ -204,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.classList.add('active');
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                smoothScrollTo(target);
             }
         });
     });
@@ -226,8 +316,6 @@ document.addEventListener('DOMContentLoaded', function () {
         lastScrollY = currentScroll;
         updateActiveSection();
     }
-
-    window.addEventListener('scroll', updateNavbar);
 
     function updateActiveSection() {
         const sections = document.querySelectorAll('section[id]');
@@ -261,41 +349,67 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    window.addEventListener('scroll', updateParallax);
+    // Batch navbar + parallax updates into a single rAF tick per scroll burst
+    // instead of running full-weight work on every raw scroll event.
+    let scrollTicking = false;
+    function onScroll() {
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                updateNavbar();
+                updateParallax();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     // ============================================================
-    // 5. MOUSE PARALLAX ON HERO SCHEMATIC
+    // 5. MOUSE PARALLAX ON HERO SCHEMATIC (lerp-smoothed, subtle)
     // ============================================================
     const schematic = document.querySelector('.schematic');
+    let schematicTargetX = 0,
+        schematicTargetY = 0;
+    let schematicCurX = 0,
+        schematicCurY = 0;
 
-    document.addEventListener('mousemove', function (e) {
-        if (!schematic) return;
-        const rect = schematic.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const moveX = (e.clientX - centerX) / rect.width;
-        const moveY = (e.clientY - centerY) / rect.height;
-        const rotateY = moveX * 3;
-        const rotateX = -moveY * 3;
-        schematic.style.transform = `perspective(800px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-    });
-
-    document.addEventListener('mouseleave', function () {
-        if (schematic) {
-            schematic.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)';
-        }
-    });
-
-    // ============================================================
-    // 6. QUADRANT HOVER ON SCHEMATIC RING
-    // ============================================================
-    const quadrants = document.querySelectorAll('.quadrant');
-    quadrants.forEach(q => {
-        q.addEventListener('mouseenter', function () {
-            this.classList.add('active');
+    if (schematic && !reduceMotion) {
+        document.addEventListener('mousemove', function (e) {
+            const rect = schematic.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const moveX = (e.clientX - centerX) / rect.width;
+            const moveY = (e.clientY - centerY) / rect.height;
+            schematicTargetX = moveX * 2.2;
+            schematicTargetY = -moveY * 2.2;
         });
-        q.addEventListener('mouseleave', function () {
-            this.classList.remove('active');
+
+        document.addEventListener('mouseleave', function () {
+            schematicTargetX = 0;
+            schematicTargetY = 0;
+        });
+
+        (function animateSchematic() {
+            schematicCurX += (schematicTargetX - schematicCurX) * 0.08;
+            schematicCurY += (schematicTargetY - schematicCurY) * 0.08;
+            schematic.style.transform = `perspective(900px) rotateY(${schematicCurX}deg) rotateX(${schematicCurY}deg)`;
+            requestAnimationFrame(animateSchematic);
+        })();
+    }
+
+    // ============================================================
+    // 6. QUADRANT HOVER ON SCHEMATIC – whole wedge area, not just the rim
+    // ============================================================
+    const quadrantHits = document.querySelectorAll('.quadrant-hit');
+    quadrantHits.forEach(hit => {
+        const idx = hit.getAttribute('data-quadrant');
+        const arc = document.querySelector('.quadrant[data-quadrant="' + idx + '"]');
+        if (!arc) return;
+        hit.addEventListener('mouseenter', function () {
+            arc.classList.add('active');
+        });
+        hit.addEventListener('mouseleave', function () {
+            arc.classList.remove('active');
         });
     });
 
@@ -315,6 +429,25 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => ripple.remove(), 600);
         });
     });
+
+    // ============================================================
+    // 7b. 3D TILT ON PROJECT / ACHIEVEMENT CARDS
+    // ============================================================
+    if (!reduceMotion) {
+        document.querySelectorAll('.project-card, .ach-card').forEach(card => {
+            card.addEventListener('mousemove', function (e) {
+                const rect = this.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width - 0.5;
+                const py = (e.clientY - rect.top) / rect.height - 0.5;
+                this.style.setProperty('--ry', (px * 8).toFixed(2) + 'deg');
+                this.style.setProperty('--rx', (-py * 8).toFixed(2) + 'deg');
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.setProperty('--ry', '0deg');
+                this.style.setProperty('--rx', '0deg');
+            });
+        });
+    }
 
     // ============================================================
     // 8. UTILITY: isInViewport
@@ -393,9 +526,47 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
     // 12. REVEAL ON SCROLL
     // ============================================================
-    const revealEls = document.querySelectorAll('.reveal');
+    // Cards/groups above are also handled by revealStaggered() for their
+    // per-item delay, so exclude them here to avoid the two systems racing
+    // to mark the same element in-view before the stagger delay applies.
+    const staggerSet = new Set(staggerEls);
+    const revealEls = Array.from(document.querySelectorAll('.reveal')).filter(el => !staggerSet.has(el));
+
+    // Prefer GSAP ScrollTrigger for reveals – it's more reliable than manual
+    // polling and gives precise per-element stagger. If the CDN didn't load
+    // for any reason, the original scroll-polling version below still runs.
+    let gsapRevealActive = false;
+    if (hasScrollTrigger) {
+        gsapRevealActive = true;
+
+        revealEls.forEach(el => {
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => el.classList.add('in-view'),
+            });
+        });
+
+        ['.projects-grid .project-card', '.achievements-grid .ach-card', '.skills-grid .skill-group'].forEach(
+            selector => {
+                const groupEls = gsap.utils.toArray(selector);
+                if (!groupEls.length) return;
+                ScrollTrigger.batch(groupEls, {
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: batch =>
+                        batch.forEach((el, i) => {
+                            el.style.transitionDelay = (i % 4) * 0.1 + 's';
+                            el.classList.add('in-view');
+                        }),
+                });
+            }
+        );
+    }
 
     function revealOnScroll() {
+        if (gsapRevealActive) return; // ScrollTrigger already owns this
         revealEls.forEach(el => {
             if (isInViewport(el) && !el.classList.contains('in-view')) {
                 el.classList.add('in-view');
@@ -417,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // ============================================================
     // 13. CONTACT FORM
@@ -494,7 +665,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                smoothScrollTo(target);
             }
         });
     });
@@ -580,12 +751,47 @@ document.addEventListener('DOMContentLoaded', function () {
     addSEOMetaTags();
 
     // ============================================================
-    // 17. INITIAL TRIGGER
+    // 17. BACK TO TOP
+    // ============================================================
+    const backToTop = document.createElement('button');
+    backToTop.className = 'back-to-top';
+    backToTop.type = 'button';
+    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTop);
+
+    backToTop.addEventListener('mouseenter', function () {
+        cursorDot.classList.add('hover');
+        distortion.classList.add('hover');
+        activeMagnet = this;
+    });
+    backToTop.addEventListener('mouseleave', function () {
+        cursorDot.classList.remove('hover');
+        distortion.classList.remove('hover');
+        if (activeMagnet === this) activeMagnet = null;
+    });
+    backToTop.addEventListener('mousedown', () => distortion.classList.add('click'));
+    backToTop.addEventListener('mouseup', () => distortion.classList.remove('click'));
+
+    backToTop.addEventListener('click', function () {
+        smoothScrollTo(0, 0);
+    });
+
+    function toggleBackToTop() {
+        const scrollY = window.pageYOffset || window.scrollY;
+        backToTop.classList.toggle('visible', scrollY > 500);
+    }
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+
+    // ============================================================
+    // 18. INITIAL TRIGGER
     // ============================================================
     setTimeout(() => {
         animateSkills();
         animateCounters();
         revealOnScroll();
+        toggleBackToTop();
+        if (hasScrollTrigger) ScrollTrigger.refresh();
     }, 500);
 
 });
