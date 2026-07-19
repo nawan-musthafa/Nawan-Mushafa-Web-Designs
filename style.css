@@ -32,9 +32,10 @@ html {
     scroll-behavior: smooth;
 }
 
-.icon{
-    max-width:20px;
+.icon {
+    max-width: 20px;
 }
+
 body {
     background: var(--bg-primary);
     color: var(--text-primary);
@@ -69,7 +70,7 @@ button {
     color: var(--bg-primary);
 }
 
-/* ===== CUSTOM CURSOR DOT (smaller) ===== */
+/* ===== CUSTOM CURSOR DOT ===== */
 body:not(.custom-cursor-enabled) {
     cursor: auto;
 }
@@ -98,7 +99,7 @@ body.custom-cursor-enabled {
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
-/* ===== BACKGROUND DISTORTION (glass magnifier) – 1/6 size ===== */
+/* ===== BACKGROUND DISTORTION (glass magnifier) ===== */
 .distortion-glass {
     position: fixed;
     width: 30px;
@@ -113,10 +114,10 @@ body.custom-cursor-enabled {
     border: 1px solid rgba(201, 168, 76, 0.12);
     box-shadow: 0 0 30px rgba(201, 168, 76, 0.04);
     transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease,
-                background 0.4s ease,
-                backdrop-filter 0.4s ease;
+        height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease,
+        background 0.4s ease,
+        backdrop-filter 0.4s ease;
     will-change: transform, left, top;
 }
 
@@ -145,52 +146,44 @@ body.custom-cursor-enabled {
     }
 }
 
-/* ===== QUADRANT HOVER – DRAMATIC MAGNETIC EFFECT ===== */
+/* ===== QUADRANT HOVER – FIXED ===== */
 .schematic .quadrant {
     fill: none;
     stroke: var(--border-strong);
     stroke-width: 1.8;
     transition: stroke 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                stroke-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    cursor: none;
-    /* the visual rim no longer receives pointer events – the pie-slice
-       hit path below does, so hovering anywhere in the wedge lights it up */
+        stroke-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
-    transform-origin: 260px 260px; /* center of the schematic */
+    transform-origin: 260px 260px;
 }
 
-/* Invisible pie-slice covering the full quadrant area (rim to center).
-   fill: transparent (not "none") so it still paints and can be hovered. */
+/* Invisible pie-slice that catches hover events — using a nearly-transparent
+   fill instead of "transparent" so browsers reliably register pointer events */
 .schematic .quadrant-hit {
-    fill: transparent;
+    fill: rgba(255, 255, 255, 0.001);
     stroke: none;
     pointer-events: all;
     cursor: none;
+    transition: none;
 }
 
 @keyframes pulse-glow {
     0% {
-        filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.8))
-                drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
+        filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.8)) drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
     }
     50% {
-        filter: drop-shadow(0 0 35px rgba(201, 168, 76, 1))
-                drop-shadow(0 0 70px rgba(201, 168, 76, 0.5));
+        filter: drop-shadow(0 0 35px rgba(201, 168, 76, 1)) drop-shadow(0 0 70px rgba(201, 168, 76, 0.5));
     }
     100% {
-        filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.8))
-                drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
+        filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.8)) drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
     }
 }
 
-.schematic .quadrant:hover,
 .schematic .quadrant.active {
     stroke: var(--accent);
     stroke-width: 5;
     animation: pulse-glow 1.2s ease-in-out infinite;
-    transform: scale(1.06);
 }
 
 /* ===== SCROLLBAR ===== */
@@ -709,7 +702,7 @@ h4 {
     animation-delay: 1.2s;
 }
 .schematic .pad:nth-of-type(5) {
-    animation: none; /* center pad stays fixed, anchoring the hub */
+    animation: none;
 }
 @keyframes float-pad {
     0%,

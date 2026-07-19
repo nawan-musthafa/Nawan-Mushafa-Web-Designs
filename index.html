@@ -24,7 +24,7 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-inner">
             <a href="#home" class="logo">
-                <span class="logo-mark"><img class="icon" src="logo.png"></span>
+                <span class="logo-mark"><img class="icon" src="logo.png" alt="Logo" /></span>
                 <span class="logo-text">Nawan<span class="accent">.</span></span>
             </a>
             <div class="nav-links" id="navMenu">
@@ -90,46 +90,49 @@
 
             <!-- ===== SCHEMATIC DIAGRAM ===== -->
             <div class="hero-visual">
-               <svg class="schematic" viewBox="0 0 520 520" role="img" aria-label="Diagram of Nawan's core stack">
-    <!-- Background ring -->
-    <circle class="ring" cx="260" cy="260" r="168" />
-    <!-- Spinning ring -->
-    <circle class="ring-spin" cx="260" cy="260" r="188" />
+                <svg class="schematic" viewBox="0 0 520 520" role="img" aria-label="Diagram of Nawan's core stack">
+                    <!-- Background ring -->
+                    <circle class="ring" cx="260" cy="260" r="168" />
+                    <!-- Spinning ring -->
+                    <circle class="ring-spin" cx="260" cy="260" r="188" />
 
-    <!-- Quadrants: visible rim arc + an invisible pie-slice "hit" path so the
-         whole wedge area (not just the thin stroke) triggers the hover state -->
-    <path class="quadrant" data-quadrant="0" d="M260,92 A168,168 0 0,1 428,260" />
-    <path class="quadrant-hit" data-quadrant="0" d="M260,260 L260,92 A168,168 0 0,1 428,260 Z" />
-    <path class="quadrant" data-quadrant="1" d="M428,260 A168,168 0 0,1 260,428" />
-    <path class="quadrant-hit" data-quadrant="1" d="M260,260 L428,260 A168,168 0 0,1 260,428 Z" />
-    <path class="quadrant" data-quadrant="2" d="M260,428 A168,168 0 0,1 92,260" />
-    <path class="quadrant-hit" data-quadrant="2" d="M260,260 L260,428 A168,168 0 0,1 92,260 Z" />
-    <path class="quadrant" data-quadrant="3" d="M92,260 A168,168 0 0,1 260,92" />
-    <path class="quadrant-hit" data-quadrant="3" d="M260,260 L92,260 A168,168 0 0,1 260,92 Z" />
+                    <!-- Quadrants: visible rim arc + invisible pie-slice "hit" path -->
+                    <!-- Quadrant 0 - Top Right -->
+                    <path class="quadrant" data-quadrant="0" d="M260,92 A168,168 0 0,1 428,260" />
+                    <path class="quadrant-hit" data-quadrant="0" d="M260,260 L260,92 A168,168 0 0,1 428,260 Z" />
+                    <!-- Quadrant 1 - Bottom Right -->
+                    <path class="quadrant" data-quadrant="1" d="M428,260 A168,168 0 0,1 260,428" />
+                    <path class="quadrant-hit" data-quadrant="1" d="M260,260 L428,260 A168,168 0 0,1 260,428 Z" />
+                    <!-- Quadrant 2 - Bottom Left -->
+                    <path class="quadrant" data-quadrant="2" d="M260,428 A168,168 0 0,1 92,260" />
+                    <path class="quadrant-hit" data-quadrant="2" d="M260,260 L260,428 A168,168 0 0,1 92,260 Z" />
+                    <!-- Quadrant 3 - Top Left -->
+                    <path class="quadrant" data-quadrant="3" d="M92,260 A168,168 0 0,1 260,92" />
+                    <path class="quadrant-hit" data-quadrant="3" d="M260,260 L92,260 A168,168 0 0,1 260,92 Z" />
 
-    <!-- Traces -->
-    <line class="trace" x1="260" y1="260" x2="260" y2="92" />
-    <line class="trace" x1="260" y1="260" x2="428" y2="260" style="animation-delay:.15s" />
-    <line class="trace" x1="260" y1="260" x2="260" y2="428" style="animation-delay:.3s" />
-    <line class="trace" x1="260" y1="260" x2="92" y2="260" style="animation-delay:.45s" />
+                    <!-- Traces -->
+                    <line class="trace" x1="260" y1="260" x2="260" y2="92" />
+                    <line class="trace" x1="260" y1="260" x2="428" y2="260" style="animation-delay:.15s" />
+                    <line class="trace" x1="260" y1="260" x2="260" y2="428" style="animation-delay:.3s" />
+                    <line class="trace" x1="260" y1="260" x2="92" y2="260" style="animation-delay:.45s" />
 
-    <!-- Pads -->
-    <rect class="pad" x="248" y="80" width="24" height="24" />
-    <rect class="pad" x="416" y="248" width="24" height="24" />
-    <rect class="pad" x="248" y="416" width="24" height="24" />
-    <rect class="pad" x="80" y="248" width="24" height="24" />
-    <rect class="pad" x="242" y="242" width="36" height="36" />
-    <circle class="hub" cx="260" cy="260" r="4" />
+                    <!-- Pads -->
+                    <rect class="pad" x="248" y="80" width="24" height="24" />
+                    <rect class="pad" x="416" y="248" width="24" height="24" />
+                    <rect class="pad" x="248" y="416" width="24" height="24" />
+                    <rect class="pad" x="80" y="248" width="24" height="24" />
+                    <rect class="pad" x="242" y="242" width="36" height="36" />
+                    <circle class="hub" cx="260" cy="260" r="4" />
 
-    <!-- Labels -->
-    <text class="node-label" x="260" y="66" text-anchor="middle">HTML · CSS · JS</text>
-    <text class="node-label" x="446" y="256" text-anchor="start">UI / UX Design</text>
-    <text class="node-label" x="260" y="454" text-anchor="middle">Firebase + Netlify</text>
-    <text class="node-label" x="74" y="256" text-anchor="end">Responsive</text>
+                    <!-- Labels -->
+                    <text class="node-label" x="260" y="66" text-anchor="middle">HTML · CSS · JS</text>
+                    <text class="node-label" x="446" y="256" text-anchor="start">UI / UX Design</text>
+                    <text class="node-label" x="260" y="454" text-anchor="middle">Firebase + Netlify</text>
+                    <text class="node-label" x="74" y="256" text-anchor="end">Responsive</text>
 
-    <text class="fig-caption" x="18" y="500">FIG. 01 — STACK OVERVIEW</text>
-    <text class="fig-caption" x="502" y="500" text-anchor="end">REV. A</text>
-</svg>
+                    <text class="fig-caption" x="18" y="500">FIG. 01 — STACK OVERVIEW</text>
+                    <text class="fig-caption" x="502" y="500" text-anchor="end">REV. A</text>
+                </svg>
             </div>
         </div>
         <div class="scroll-hint">
@@ -148,7 +151,6 @@
             <div class="about-grid">
                 <div class="about-image reveal">
                     <div class="image-wrapper">
-                        <!-- ===== YOUR PROFILE PHOTO ===== -->
                         <img src="nawan.jpg" alt="Nawan Musthafa" />
                         <div class="image-ring"></div>
                     </div>
@@ -317,11 +319,11 @@
                     </div>
                 </div>
 
-                <!-- Portfolio -->
+                <!-- Dual-Code -->
                 <div class="project-card reveal">
                     <div class="project-thumb" style="background: linear-gradient(145deg, #0e0e1a, #1a1a2e); position:relative; overflow:hidden;">
-                        <img src="img/portfolio.jpg" alt="Personal Portfolio" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
-                        <span class="project-badge">Dual-Code Website</span>
+                        <img src="img/portfolio.jpg" alt="Dual-Code Website" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+                        <span class="project-badge">Dual-Code</span>
                         <div class="project-overlay">
                             <a href="https://dualcode.netlify.app/" class="project-link"><i class="fas fa-eye"></i> View Project</a>
                             <a href="#" class="project-link"><i class="fas fa-code"></i> Code</a>

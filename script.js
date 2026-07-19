@@ -1,7 +1,7 @@
 // ============================================================
 // script.js – Nawan Musthafa · Dark Premium Portfolio
 // Custom cursor dot + background distortion (glass magnifier)
-// Quadrant hover on schematic
+// Quadrant hover on schematic – FIXED
 // Native smooth scroll · particles · parallax
 // ============================================================
 
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const loaderRing = document.querySelector('.loader-ring');
     let loadProgress = 0;
     const progressTimer = setInterval(() => {
-        // Ease toward 92% while real resources load; the load event finishes it
         loadProgress += (92 - loadProgress) * 0.1 + 1;
         if (loadProgress > 92) loadProgress = 92;
         if (loaderRing) loaderRing.style.setProperty('--p', loadProgress.toFixed(1));
@@ -43,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (hasGSAP) {
         if (hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-        // Drive Lenis off GSAP's own ticker so there's a single rAF loop
-        // powering both the smooth scroll and the scroll-triggered animations.
         gsap.ticker.add((time) => {
             if (lenis) lenis.raf(time * 1000);
         });
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             lenis.on('scroll', ScrollTrigger.update);
         }
     } else if (lenis) {
-        // No GSAP available – drive Lenis with a plain rAF loop instead
         function rafFallback(time) {
             lenis.raf(time);
             requestAnimationFrame(rafFallback);
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(rafFallback);
     }
 
-    // Helper used by every internal-anchor click handler below
     function smoothScrollTo(target, offset = -80) {
         if (lenis) {
             lenis.scrollTo(target, { offset });
@@ -74,15 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
     // 1. CUSTOM CURSOR DOT + BACKGROUND DISTORTION
     // ============================================================
-    // Always create cursor on desktop, hide on touch via CSS
-    // Remove touch detection – it was blocking the cursor on many devices
-
-    // --- Cursor dot ---
     const cursorDot = document.createElement('div');
     cursorDot.className = 'cursor-dot';
     document.body.appendChild(cursorDot);
 
-    // --- Distortion glass ---
     const distortion = document.createElement('div');
     distortion.className = 'distortion-glass';
     document.body.appendChild(distortion);
@@ -101,8 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
         mouseY = e.clientY;
     });
 
-    // Magnetic pull: while hovering a small, precise interactive element,
-    // the glass eases toward its center instead of the raw cursor position.
     let activeMagnet = null;
 
     function glassTarget() {
@@ -118,15 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return { x: mouseX, y: mouseY };
     }
 
-    // Smooth follow for dot and glass (different speeds for layered effect)
     function animateCursor() {
-        // Dot follows fast and precisely
         dotX += (mouseX - dotX) * 0.35;
         dotY += (mouseY - dotY) * 0.35;
         cursorDot.style.left = dotX + 'px';
         cursorDot.style.top = dotY + 'px';
 
-        // Glass follows with a touch of elastic delay, pulled toward magnets
         const target = glassTarget();
         glassX += (target.x - glassX) * 0.18;
         glassY += (target.y - glassY) * 0.18;
@@ -137,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     animateCursor();
 
-    // Hover effects (glow + expand)
     const hoverElements = document.querySelectorAll(
         'a, button, .btn, .nav-link, .project-link, .social-link, .project-card, .ach-card'
     );
@@ -159,8 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Magnetic pull only on small, precise targets – pulling a big card's
-    // hover toward its center would feel wrong across its whole area.
     const magneticElements = document.querySelectorAll(
         '.btn, .nav-link, .social-link, .project-link, .nav-toggle'
     );
@@ -173,13 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Reset on window blur
     window.addEventListener('blur', function () {
         cursorDot.classList.remove('hover');
         distortion.classList.remove('hover', 'click');
     });
-
-    // Also hide cursor on touch devices via media query – CSS handles this
 
     // ============================================================
     // 2. PARTICLES BACKGROUND
@@ -333,6 +312,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    let scrollTicking = false;
+
+    function onScroll() {
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                updateNavbar();
+                updateParallax();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
     // ============================================================
     // 4. PARALLAX EFFECTS
     // ============================================================
@@ -349,23 +342,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Batch navbar + parallax updates into a single rAF tick per scroll burst
-    // instead of running full-weight work on every raw scroll event.
-    let scrollTicking = false;
-    function onScroll() {
-        if (!scrollTicking) {
-            requestAnimationFrame(() => {
-                updateNavbar();
-                updateParallax();
-                scrollTicking = false;
-            });
-            scrollTicking = true;
-        }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-
     // ============================================================
-    // 5. MOUSE PARALLAX ON HERO SCHEMATIC (lerp-smoothed, subtle)
+    // 5. MOUSE PARALLAX ON HERO SCHEMATIC
     // ============================================================
     const schematic = document.querySelector('.schematic');
     let schematicTargetX = 0,
@@ -398,20 +376,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ============================================================
-    // 6. QUADRANT HOVER ON SCHEMATIC – whole wedge area, not just the rim
+    // 6. QUADRANT HOVER – FIXED
     // ============================================================
-    const quadrantHits = document.querySelectorAll('.quadrant-hit');
-    quadrantHits.forEach(hit => {
-        const idx = hit.getAttribute('data-quadrant');
-        const arc = document.querySelector('.quadrant[data-quadrant="' + idx + '"]');
-        if (!arc) return;
-        hit.addEventListener('mouseenter', function () {
-            arc.classList.add('active');
+    // Wait for DOM to be fully ready and re-run after any potential re-renders
+    function setupQuadrantHover() {
+        const quadrantHits = document.querySelectorAll('.quadrant-hit');
+        quadrantHits.forEach(hit => {
+            const idx = hit.getAttribute('data-quadrant');
+            const arc = document.querySelector('.quadrant[data-quadrant="' + idx + '"]');
+            if (!arc) {
+                console.warn('Quadrant arc not found for data-quadrant:', idx);
+                return;
+            }
+            // Remove any existing listeners to avoid duplicates
+            const newHit = hit.cloneNode(true);
+            hit.parentNode.replaceChild(newHit, hit);
+
+            newHit.addEventListener('mouseenter', function () {
+                arc.classList.add('active');
+            });
+            newHit.addEventListener('mouseleave', function () {
+                arc.classList.remove('active');
+            });
         });
-        hit.addEventListener('mouseleave', function () {
-            arc.classList.remove('active');
-        });
-    });
+    }
+
+    // Run immediately and also after a short delay to catch any dynamic changes
+    setupQuadrantHover();
+    setTimeout(setupQuadrantHover, 100);
+
+    // Also re-run on resize (in case layout shifts affect hit areas)
+    window.addEventListener('resize', setupQuadrantHover);
 
     // ============================================================
     // 7. BUTTON RIPPLE EFFECT
@@ -526,19 +521,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
     // 12. REVEAL ON SCROLL
     // ============================================================
-    // Cards/groups above are also handled by revealStaggered() for their
-    // per-item delay, so exclude them here to avoid the two systems racing
-    // to mark the same element in-view before the stagger delay applies.
     const staggerSet = new Set(staggerEls);
     const revealEls = Array.from(document.querySelectorAll('.reveal')).filter(el => !staggerSet.has(el));
 
-    // Prefer GSAP ScrollTrigger for reveals – it's more reliable than manual
-    // polling and gives precise per-element stagger. If the CDN didn't load
-    // for any reason, the original scroll-polling version below still runs.
     let gsapRevealActive = false;
     if (hasScrollTrigger) {
         gsapRevealActive = true;
-
         revealEls.forEach(el => {
             ScrollTrigger.create({
                 trigger: el,
@@ -566,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function revealOnScroll() {
-        if (gsapRevealActive) return; // ScrollTrigger already owns this
+        if (gsapRevealActive) return;
         revealEls.forEach(el => {
             if (isInViewport(el) && !el.classList.contains('in-view')) {
                 el.classList.add('in-view');
@@ -655,7 +643,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ============================================================
-    // 15. SMOOTH SCROLL FOR ALL ANCHORS (native)
+    // 15. SMOOTH SCROLL FOR ALL ANCHORS
     // ============================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (anchor.classList.contains('nav-link')) return;
