@@ -1,395 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nawan Musthafa | Digital Architect & UI/UX Designer</title>
-    <meta name="description" content="15-year-old web designer with 2 years of experience crafting digital experiences that blend creativity with functionality.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nawan Musthafa · Digital Architect</title>
+    <meta name="description" content="Nawan Musthafa – 16‑year‑old digital architect building world‑class digital experiences." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Animated Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">
-                <span class="logo-text">Nawan<span class="logo-dot">.</span></span>
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <span>N.M.</span>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#home" class="logo">
+                <span class="logo-mark">◆</span>
+                <span class="logo-text">Nawan<span class="accent">.</span></span>
             </a>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link active" data-text="Home">Home</a>
-                <a href="#about" class="nav-link" data-text="About">About</a>
-                <a href="#skills" class="nav-link" data-text="Skills">Skills</a>
-                <a href="#projects" class="nav-link" data-text="Projects">Projects</a>
-                <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+            <div class="nav-links" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO ===== -->
     <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">
-                        <span>15 Year Old Digital Architect</span>
-                    </div>
-                    <h1 class="hero-title">
-                        <span class="title-line">Crafting</span>
-                        <span class="title-line">Digital <span class="highlight">Experiences</span></span>
-                    </h1>
-                    <p class="hero-subtitle">Hi, I'm <strong>Nawan Musthafa</strong>, a passionate UI/UX designer and frontend developer with 2 years of experience creating immersive digital solutions that drive results.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            <span>View Portfolio</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <span>Hire Me</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="2">0</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="15">0</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="100">0</div>
-                            <div class="stat-label">Satisfaction Rate</div>
-                        </div>
-                    </div>
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">✦ Available for work</span>
+                <h1 class="hero-title">
+                    <span class="title-line italic">Digital</span>
+                    <span class="title-line italic">Architect</span>
+                    <span class="title-line"><span class="accent">Nawan Musthafa</span></span>
+                </h1>
+                <p class="hero-desc">
+                    I craft digital experiences that are as functional as they are beautiful. <br />
+                    16 years old · 2+ years of building.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View Portfolio</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Let's Talk</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
                 </div>
-                <div class="hero-visual">
-                    <div class="floating-card" id="card1">
-                        <div class="card-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Clean Code</h3>
-                        <p>Semantic & Efficient</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-count="2">0</span>
+                        <span class="stat-label">Years Experience</span>
                     </div>
-                    <div class="floating-card" id="card2">
-                        <div class="card-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>Creative Design</h3>
-                        <p>Beautiful Interfaces</p>
+                    <div class="stat">
+                        <span class="stat-number" data-count="15">0</span>
+                        <span class="stat-label">Projects Built</span>
                     </div>
-                    <div class="floating-card" id="card3">
-                        <div class="card-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3>Fast Performance</h3>
-                        <p>Optimized Experience</p>
+                    <div class="stat">
+                        <span class="stat-number" data-count="100">0</span>
+                        <span class="stat-label">Satisfaction %</span>
                     </div>
-                    <div class="hero-glow"></div>
                 </div>
             </div>
+
+            <!-- ===== SCHEMATIC DIAGRAM ===== -->
+            <div class="hero-visual">
+               <svg class="schematic" viewBox="0 0 520 520" role="img" aria-label="Diagram of Nawan's core stack">
+    <!-- Background ring -->
+    <circle class="ring" cx="260" cy="260" r="168" />
+    <!-- Spinning ring -->
+    <circle class="ring-spin" cx="260" cy="260" r="188" />
+
+    <!-- Quadrants (each is an arc) -->
+    <path class="quadrant" d="M260,92 A168,168 0 0,1 428,260" />
+    <path class="quadrant" d="M428,260 A168,168 0 0,1 260,428" />
+    <path class="quadrant" d="M260,428 A168,168 0 0,1 92,260" />
+    <path class="quadrant" d="M92,260 A168,168 0 0,1 260,92" />
+
+    <!-- Traces -->
+    <line class="trace" x1="260" y1="260" x2="260" y2="92" />
+    <line class="trace" x1="260" y1="260" x2="428" y2="260" style="animation-delay:.15s" />
+    <line class="trace" x1="260" y1="260" x2="260" y2="428" style="animation-delay:.3s" />
+    <line class="trace" x1="260" y1="260" x2="92" y2="260" style="animation-delay:.45s" />
+
+    <!-- Pads -->
+    <rect class="pad" x="248" y="80" width="24" height="24" />
+    <rect class="pad" x="416" y="248" width="24" height="24" />
+    <rect class="pad" x="248" y="416" width="24" height="24" />
+    <rect class="pad" x="80" y="248" width="24" height="24" />
+    <rect class="pad" x="242" y="242" width="36" height="36" />
+    <circle class="hub" cx="260" cy="260" r="4" />
+
+    <!-- Labels -->
+    <text class="node-label" x="260" y="66" text-anchor="middle">HTML · CSS · JS</text>
+    <text class="node-label" x="446" y="256" text-anchor="start">UI / UX Design</text>
+    <text class="node-label" x="260" y="454" text-anchor="middle">Firebase + Netlify</text>
+    <text class="node-label" x="74" y="256" text-anchor="end">Responsive</text>
+
+    <text class="fig-caption" x="18" y="500">FIG. 01 — STACK OVERVIEW</text>
+    <text class="fig-caption" x="502" y="500" text-anchor="end">REV. A</text>
+</svg>
+            </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Explore My Work</span>
-            <div class="arrow"></div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section about">
         <div class="container">
-            <h2 class="section-title">About <span class="highlight">Me</span></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="about-header">
-                        <h3>Building Digital Dreams Since 13</h3>
-                        <div class="age-badge">15 Years Young</div>
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Who I <span class="accent">Am</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="image-wrapper">
+                        <!-- ===== YOUR PROFILE PHOTO ===== -->
+                        <img src="nawan.jpg" alt="Nawan Musthafa" />
+                        <div class="image-ring"></div>
                     </div>
-                    <p>I'm a passionate web designer from Payyoli, currently studying at TSGVHSS. My journey into the world of web design started when I was just 13, and since then, I've been constantly learning and improving my skills.</p>
-                    <p>Last year, I competed in the state IT fair in Web Designing, which was an incredible experience that pushed my abilities to new heights. I'm currently working on my school's website, applying my knowledge to create something impactful for my community.</p>
+                    <div class="image-badge">
+                        <span>16</span>
+                        <small>Years Young</small>
+                    </div>
+                </div>
+                <div class="about-text reveal">
+                    <h3>Crafting Digital Experiences Since 13</h3>
+                    <p>
+                        I'm a passionate web designer from Payyoli, currently studying at TSGVHSS. My journey started at 13, and since then I've been obsessed with creating digital experiences that leave a mark.
+                    </p>
+                    <p>
+                        I've competed in the state IT fair, won the <strong>YIP State Championship</strong> with OxySafe, and built <strong>XSLC+</strong>, an exam‑prep platform for Kerala SSLC students. I believe in design that's both beautiful and purposeful.
+                    </p>
                     <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-bolt"></i>
-                            <span>Fast Learner & Adaptable</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Creative Problem Solver</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-users"></i>
-                            <span>Team Collaborator</span>
-                        </div>
+                        <div class="af"><i class="fas fa-bolt"></i> Fast Learner</div>
+                        <div class="af"><i class="fas fa-lightbulb"></i> Creative Thinker</div>
+                        <div class="af"><i class="fas fa-users"></i> Team Player</div>
                     </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-container">
-                        <div class="image-placeholder">
-                            <!-- Profile photo will be displayed via CSS -->
-                        </div>
-                        <div class="image-glow"></div>
-                        <div class="experience-badge">
-                            <span>2+ Years</span>
-                            <small>Experience</small>
-                        </div>
-                    </div>
+                    <a href="#contact" class="btn btn-primary btn-sm">
+                        <span>Work With Me</span>
+                        <i class="fas fa-handshake"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section id="achievements" class="section achievements">
         <div class="container">
-            <h2 class="section-title">Technical <span class="highlight">Expertise</span></h2>
+            <div class="section-header">
+                <span class="section-tag">Achievements</span>
+                <h2 class="section-title">Key <span class="accent">Milestones</span></h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="ach-card reveal">
+                    <div class="ach-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>YIP State Winner</h3>
+                    <p>Won the state championship with OxySafe — a smart vehicle safety system that detects gas leaks &amp; prevents fires.</p>
+                    <span class="ach-tag">#Innovation</span>
+                </div>
+                <div class="ach-card reveal">
+                    <div class="ach-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>XSLC+ Exam Platform</h3>
+                    <p>Built a full exam‑prep platform for Kerala SSLC students with quizzes, progress tracking, and an exam archive.</p>
+                    <span class="ach-tag">#EdTech</span>
+                </div>
+                <div class="ach-card reveal">
+                    <div class="ach-icon"><i class="fas fa-palette"></i></div>
+                    <h3>State IT Fair Finalist</h3>
+                    <p>Competed in the state‑level web design competition, showcasing innovative UI/UX and frontend skills.</p>
+                    <span class="ach-tag">#Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+            </div>
             <div class="skills-grid">
-                <div class="skill-category">
+                <div class="skill-group reveal">
                     <h3>Frontend Development</h3>
-                    <div class="skill-list">
-                        <div class="skill-item" data-skill="HTML5" data-level="95">
-                            <div class="skill-header">
-                                <span class="skill-name">HTML5</span>
-                                <span class="skill-percent">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="CSS3" data-level="90">
-                            <div class="skill-header">
-                                <span class="skill-name">CSS3</span>
-                                <span class="skill-percent">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="JavaScript" data-level="80">
-                            <div class="skill-header">
-                                <span class="skill-name">JavaScript</span>
-                                <span class="skill-percent">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
+                    <div class="skill-item" data-level="95">
+                        <div class="skill-head"><span>HTML5</span><span>95%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="90">
+                        <div class="skill-head"><span>CSS3</span><span>90%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="80">
+                        <div class="skill-head"><span>JavaScript</span><span>80%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Design & Tools</h3>
-                    <div class="skill-list">
-                        <div class="skill-item" data-skill="UI/UX Design" data-level="85">
-                            <div class="skill-header">
-                                <span class="skill-name">UI/UX Design</span>
-                                <span class="skill-percent">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="Responsive Design" data-level="90">
-                            <div class="skill-header">
-                                <span class="skill-name">Responsive Design</span>
-                                <span class="skill-percent">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="VS-Code" data-level="75">
-                            <div class="skill-header">
-                                <span class="skill-name">VS-Code</span>
-                                <span class="skill-percent">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"></div>
-                            </div>
-                        </div>
+                <div class="skill-group reveal">
+                    <h3>Design &amp; Tools</h3>
+                    <div class="skill-item" data-level="85">
+                        <div class="skill-head"><span>UI/UX Design</span><span>85%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="90">
+                        <div class="skill-head"><span>Responsive Design</span><span>90%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="75">
+                        <div class="skill-head"><span>VS Code</span><span>75%</span></div>
+                        <div class="skill-track"><div class="skill-fill"></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="section projects">
         <div class="container">
-            <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-badge">School Project</div>
+
+                <!-- OxySafe -->
+                <div class="project-card reveal">
+                    <div class="project-thumb" style="background: linear-gradient(145deg, #0b1a2e, #1a2a3a); position:relative; overflow:hidden;">
+                        <img src="img/oxy-safe.jpg" alt="OxySafe Project" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+                        <span class="project-badge">🏆 State Winner</span>
                         <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="SCHOOL WEBSITE/index.html" class="project-link">
-                                    <i class="fas fa-eye"></i>
-                                    Live Demo
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-code"></i>
-                                    Source Code
-                                </a>
-                            </div>
+                            <a href="https://nawan-musthafa.github.io/OxySafe/" target="_blank" class="project-link"><i class="fas fa-eye"></i> Live Demo</a>
+                            <a href="https://github.com/nawan-musthafa/OxySafe" target="_blank" class="project-link"><i class="fas fa-code"></i> Code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>TSGVHSS Website</h3>
-                        <p>Official website for my school with modern design and user-friendly interface.</p>
+                    <div class="project-body">
+                        <h3>OxySafe — Smart Vehicle Safety</h3>
+                        <p>YIP State Winner. A vehicle safety system that detects gas leaks, prevents fires, and alerts emergency services.</p>
                         <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Responsive</span>
+                            <span>IoT</span><span>AI</span><span>Safety</span>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('it.jpg') center/cover;">
-                        <div class="project-badge">Competition</div>
+
+                <!-- XSLC+ -->
+                <div class="project-card reveal">
+                    <div class="project-thumb" style="background: linear-gradient(145deg, #0f1a2e, #1e2a3e); position:relative; overflow:hidden;">
+                        <img src="img/xslc.jpg" alt="XSLC+ Project" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+                        <span class="project-badge">Web App</span>
                         <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-eye"></i>
-                                    View Project
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-code"></i>
-                                    Source Code
-                                </a>
-                            </div>
+                            <a href="https://xslc.netlify.app/" target="_blank" class="project-link"><i class="fas fa-eye"></i> Live Demo</a>
+                            <a href="https://github.com/nawan-musthafa/xslc" target="_blank" class="project-link"><i class="fas fa-code"></i> Code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>IT Fair Project</h3>
-                        <p>Competition entry for state IT fair showcasing innovative web design solutions.</p>
+                    <div class="project-body">
+                        <h3>XSLC+ — Exam Prep Platform</h3>
+                        <p>Exam‑prep platform for Kerala SSLC students – quizzes, progress tracking, and Firebase‑backed accounts.</p>
                         <div class="project-tags">
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Responsive</span>
-                            <span class="tag">Modern</span>
+                            <span>Education</span><span>Firebase</span><span>SSLC</span>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('portfolio.jpg') center/cover;">
-                        <div class="project-badge">Portfolio</div>
+
+                <!-- TSGVHSS School -->
+                <div class="project-card reveal">
+                    <div class="project-thumb" style="background: linear-gradient(145deg, #0e1a1e, #1a2a2a); position:relative; overflow:hidden;">
+                        <img src="img/school.jpg" alt="TSGVHSS School Website" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+                        <span class="project-badge">School Project</span>
                         <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-eye"></i>
-                                    View Project
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-code"></i>
-                                    Source Code
-                                </a>
-                            </div>
+                            <a href="https://nawan-musthafa.github.io/gvhss-payyoli/" class="project-link"><i class="fas fa-eye"></i> Live Demo</a>
+                            <a href="https://github.com/nawan-musthafa/gvhss-payyoli" class="project-link"><i class="fas fa-code"></i> Code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Personal Portfolio</h3>
-                        <p>This very website showcasing my skills, projects, and journey as a web designer.</p>
+                    <div class="project-body">
+                        <h3>TSGVHSS School Website</h3>
+                        <p>Official school website with a modern, responsive design for students, parents, and staff.</p>
                         <div class="project-tags">
-                            <span class="tag">Portfolio</span>
-                            <span class="tag">Design</span>
-                            <span class="tag">Showcase</span>
+                            <span>HTML</span><span>CSS</span><span>JS</span><span>Responsive</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Portfolio -->
+                <div class="project-card reveal">
+                    <div class="project-thumb" style="background: linear-gradient(145deg, #0e0e1a, #1a1a2e); position:relative; overflow:hidden;">
+                        <img src="img/portfolio.jpg" alt="Personal Portfolio" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+                        <span class="project-badge">Dual-Code Website</span>
+                        <div class="project-overlay">
+                            <a href="https://dualcode.netlify.app/" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+                            <a href="#" class="project-link"><i class="fas fa-code"></i> Code</a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>Web Development Agency Website</h3>
+                        <p>This modern agency website features a clean, responsive design showcasing portfolios and services for clients and partners.</p>
+                        <div class="project-tags">
+                            <span>Agency</span><span>Design</span><span>Showcase</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section contact">
         <div class="container">
-            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-header">
-                        <h3>Ready to Bring Your Vision to Life?</h3>
-                        <p>I'm currently available for freelance work and exciting new opportunities.</p>
+            <div class="section-header">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Ready to bring your vision to life?</h3>
+                    <p>I'm currently available for freelance projects and new opportunities.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h4>Location</h4><p>Ayanikkad, Payyoli, Kerala</p></div>
                     </div>
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <p>Ayanikkad, Payyoli, Kerala, India</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>musthafanawan@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p>+91 7012517454</p>
-                            </div>
-                        </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div><h4>Email</h4><p>musthafanawan@gmail.com</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div><h4>Phone</h4><p>+91 7012517454</p></div>
                     </div>
                     <div class="availability">
-                        <div class="availability-status">
-                            <div class="status-indicator"></div>
-                            <span>Available for new projects</span>
-                        </div>
+                        <span class="status-dot"></span> Available for new projects
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/nawan-musthafa" target="_blank" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/_n.a.w.a.n_/" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <div class="contact-form-container">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-header">
-                            <h3>Send Me a Message</h3>
-                            <p>I'll get back to you within 24 hours</p>
-                        </div>
+                <div class="contact-form reveal">
+                    <h3>Send a Message</h3>
+                    <p>I'll get back to you within 24 hours.</p>
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
-                            <div class="input-container">
-                                <input type="text" id="name" class="form-input" required>
-                                <label for="name" class="form-label">Your Name</label>
+                            <div class="input-wrap">
+                                <input type="text" id="name" class="form-input" placeholder=" " required />
                                 <i class="fas fa-user input-icon"></i>
+                                <label for="name">Your Name</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-container">
-                                <input type="email" id="email" class="form-input" required>
-                                <label for="email" class="form-label">Your Email</label>
+                            <div class="input-wrap">
+                                <input type="email" id="email" class="form-input" placeholder=" " required />
                                 <i class="fas fa-envelope input-icon"></i>
+                                <label for="email">Your Email</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-container">
-                                <input type="text" id="subject" class="form-input" required>
-                                <label for="subject" class="form-label">Project Type</label>
+                            <div class="input-wrap">
+                                <input type="text" id="subject" class="form-input" placeholder=" " required />
                                 <i class="fas fa-tag input-icon"></i>
+                                <label for="subject">Project Type</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-container textarea-container">
-                                <textarea id="message" class="form-input textarea-input" required></textarea>
-                                <label for="message" class="form-label">Project Details</label>
+                            <div class="input-wrap">
+                                <textarea id="message" class="form-input textarea-input" placeholder=" " required></textarea>
                                 <i class="fas fa-comment input-icon textarea-icon"></i>
+                                <label for="message">Project Details</label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary submit-btn">
-                            <span>Send Proposal Request</span>
+                            <span>Send Proposal</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
@@ -398,33 +409,20 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Nawan Musthafa</h3>
-                    <p>Young web designer crafting the future of digital experiences, one pixel at a time.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.instagram.com/_n.a.w.a.n_/" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
+                    <p>Young web designer crafting the future of digital experiences.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#achievements">Achievements</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -435,18 +433,18 @@
                     <ul>
                         <li>Web Design</li>
                         <li>UI/UX Design</li>
-                        <li>Frontend Development</li>
+                        <li>Frontend Dev</li>
                         <li>Responsive Design</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Nawan Musthafa. All rights reserved. | Designed & Developed with ❤️ by Nawan</p>
+                <span>© 2026 Nawan Musthafa. All rights reserved.</span>
+                <span>Designed with <i class="fas fa-heart" style="color:var(--accent);"></i> by Nawan</span>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
